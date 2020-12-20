@@ -23,5 +23,11 @@
     "exclude": [
         "node_modules"
     ],
+    "include": [
+        "src/tests/**/*.ts",
+        "src/**/*.ios.ts",
+        "src/**/*.android.ts",
+        "src/**/*.ts"
+    ],
     "compileOnSave": false
 }
