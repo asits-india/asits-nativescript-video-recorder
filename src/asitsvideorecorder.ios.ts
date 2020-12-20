@@ -790,17 +790,17 @@ export class AsitsVideoRecorder extends AsitsVideoRecorderBase {
     }
 
     createNativeView() {
-        // this._swifty.videoGravity = SwiftyCamVideoGravity.ResizeAspectFill;
-        // this._swifty.enableVideo = this.isVideoEnabled();
-        // // disable audio if no video support
-        // this._swifty.disableAudio = !this.isVideoEnabled();
-        // CLog('AsitsVideoRecorder createNativeView');
-        // CLog('video enabled:', this.isVideoEnabled());
-        // CLog('default camera:', AsitsVideoRecorderBase.defaultCamera);
-        // CLog(this._swifty.view);
-        // this._swifty.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-        // return this._swifty.view;
-        return UIView.new();
+        this._swifty.videoGravity = SwiftyCamVideoGravity.ResizeAspectFill;
+        this._swifty.enableVideo = this.isVideoEnabled();
+        // disable audio if no video support
+        this._swifty.disableAudio = !this.isVideoEnabled();
+        CLog('AsitsVideoRecorder createNativeView');
+        CLog('video enabled:', this.isVideoEnabled());
+        CLog('default camera:', AsitsVideoRecorderBase.defaultCamera);
+        CLog(this._swifty.view);
+        this._swifty.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+        return this._swifty.view;
+      //  return UIView.new();
     }
 
     private _onLayoutChangeFn(args) {
