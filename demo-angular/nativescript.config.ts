@@ -1,4 +1,4 @@
-import { NativeScriptConfig } from '@nativescript/core'
+import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
   id: 'org.nativescript.demoangularasits',
@@ -8,4 +8,4 @@ export default {
     markingMode: 'none',
   },
   appPath: 'src',
-} as NativeScriptConfig
+} as NativeScriptConfig;

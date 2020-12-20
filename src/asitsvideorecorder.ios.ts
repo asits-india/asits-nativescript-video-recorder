@@ -145,16 +145,16 @@ class QBImagePickerControllerDelegateImpl extends NSObject implements QBImagePic
 
                             const pathParts = (<AVURLAsset>videoAsset).URL.toString().split(fs.path.separator);
                             const filename = pathParts[pathParts.length - 1];
-                            const localFilePath = fs.path.join(docsPath.path, 'camera-plus-videos', filename);
+                            const localFilePath = fs.path.join(docsPath.path, 'asits-video-recorder-videos', filename);
 
                             const targetURL = NSURL.fileURLWithPath(localFilePath);
 
                             if (fs.File.exists(localFilePath)) {
-                                docsPath.getFile('camera-plus-videos/' + filename).remove();
+                                docsPath.getFile('asits-video-recorder-videos/' + filename).remove();
                             } else {
                                 // make sure the folder exists, or else copyItemAtURLToURLError
                                 // will complain about it
-                                docsPath.getFolder('camera-plus-videos');
+                                docsPath.getFolder('asits-video-recorder-videos');
                             }
 
                             // the video can be compied from gallery only when the request is open
@@ -382,7 +382,7 @@ export class MySwifty extends SwiftyCamViewController {
     // }
 
     public snapPicture(options?: ICameraOptions) {
-        CLog('CameraPlus takePic options:', options);
+        CLog('AsitsVideoRecorder takePic options:', options);
         if (options) {
             this._snapPicOptions = options;
         } else {
@@ -400,10 +400,10 @@ export class MySwifty extends SwiftyCamViewController {
         options = options || {};
         if (this._enableVideo) {
             if (this.isVideoRecording) {
-                CLog('CameraPlus stop video recording.');
+                CLog('AsitsVideoRecorder stop video recording.');
                 this.stopVideoRecording();
             } else {
-                CLog('CameraPlus record video options:', options);
+                CLog('AsitsVideoRecorder record video options:', options);
                 if (options) {
                     this._videoOptions = options;
                 } else {
@@ -483,23 +483,23 @@ export class MySwifty extends SwiftyCamViewController {
         CLog(`video saved`, path);
 
         // ideally could just rely on this, but this will not emit the event (commenting for now and instead doing above in recordready - TODO: discuss why)
-        // this._owner.get().sendEvent(CameraPlus.videoRecordingReadyEvent, path);
+        // this._owner.get().sendEvent(AsitsVideoRecorder.videoRecordingReadyEvent, path);
     }
 
     public switchCam() {
-        CLog('CameraPlus switchCam');
+        CLog('AsitsVideoRecorder switchCam');
         this.switchCamera();
     }
 
     public toggleFlash() {
         this._flashEnabled = !this._flashEnabled;
         this.flashEnabled = this._flashEnabled; // super class behavior
-        CLog('CameraPlus flash enabled:', this._flashEnabled);
+        CLog('AsitsVideoRecorder flash enabled:', this._flashEnabled);
         this._flashBtnHandler();
     }
 
     public openGallery() {
-        CLog('CameraPlus openGallery');
+        CLog('AsitsVideoRecorder openGallery');
         const width = this._owner.get().galleryPickerWidth;
         const height = this._owner.get().galleryPickerHeight;
         const keepAspectRatio = this._owner.get().keepAspectRatio;
@@ -791,15 +791,16 @@ export class AsitsVideoRecorder extends AsitsVideoRecorderBase {
 
     createNativeView() {
         // this._swifty.videoGravity = SwiftyCamVideoGravity.ResizeAspectFill;
-        this._swifty.enableVideo = this.isVideoEnabled();
-        // disable audio if no video support
-        this._swifty.disableAudio = !this.isVideoEnabled();
-        CLog('CameraPlus createNativeView');
-        CLog('video enabled:', this.isVideoEnabled());
-        CLog('default camera:', AsitsVideoRecorderBase.defaultCamera);
-        CLog(this._swifty.view);
-        this._swifty.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-        return this._swifty.view;
+        // this._swifty.enableVideo = this.isVideoEnabled();
+        // // disable audio if no video support
+        // this._swifty.disableAudio = !this.isVideoEnabled();
+        // CLog('AsitsVideoRecorder createNativeView');
+        // CLog('video enabled:', this.isVideoEnabled());
+        // CLog('default camera:', AsitsVideoRecorderBase.defaultCamera);
+        // CLog(this._swifty.view);
+        // this._swifty.view.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+        // return this._swifty.view;
+        return UIView.new();
     }
 
     private _onLayoutChangeFn(args) {
