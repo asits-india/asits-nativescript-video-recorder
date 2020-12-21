@@ -1,11 +1,15 @@
 /* Include.gradle configuration: http://docs.nativescript.org/plugins/plugins#includegradle-specification */
-
-android {
-	
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        google()
+        maven { url "https://dl.bintray.com/triniwiz/maven" }
+    }
 }
 
 dependencies {
-    // Describe plugin native Android dependencies like
-	// implementation "groupName:pluginName:ver" 
-    // EXAMPLE: implementation "com.facebook.fresco:fresco:0.9.0+"
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation('com.github.triniwiz:fancycamera:3.0.0-alpha13'){
+        transitive = true
+    }
 }
